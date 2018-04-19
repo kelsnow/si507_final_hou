@@ -253,10 +253,10 @@ print(len(all_hash))
 # f.close()
 
 # hashtag json for hashtag table 
-# h_json_nice = json.dumps(hashtags,indent=2)
-# f = open("hashtag.json",'w')
-# f.write(h_json_nice)
-# f.close()
+h_json_nice = json.dumps(all_hash,indent=2)
+f = open("hashtag.json",'w')
+f.write(h_json_nice)
+f.close()
 
 
 
