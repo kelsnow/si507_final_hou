@@ -4,7 +4,6 @@
 
 # building up data base 
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from flask import Flask
@@ -16,7 +15,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import plotly.plotly as py
 import plotly.graph_objs as go
-import numpy as np
 stop_words = set(stopwords.words('english'))
 
 
@@ -388,8 +386,6 @@ def interactive_prompt():
             
 
 
-
-    
 
 interactive_prompt()
 
