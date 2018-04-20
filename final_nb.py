@@ -280,6 +280,32 @@ def plot_lab_hashnum():
 
 # plot_lab_hashnum(lab_name,lab_hashnum)
 
+def plot_table():
+    df = pd.read_csv('Labs.csv')
+
+    table = go.Table(
+        columnwidth=[0.2, 0.47, 0.48, 0.2, 0.2],
+        header = dict(
+            values=['Id', 'Name','Lab Brief','PrimaryInstructor','Number of People'],
+            font=dict(size=10),
+            line = dict(color='rgb(50, 50, 50)'),
+            align = 'left',
+            fill = dict(color='#d562be'),
+        ),
+        cells = dict(
+            values=[df[k].tolist() for k in df.columns[:-1]],
+            line = dict(color='rgb(50, 50, 50)'),
+            align = 'left',
+            fill = dict(color='#f5f5fa')
+            )
+        )
+    py.plot([table],filename='lab_table')
+        
+
+# plot_table()
+
+
+
 def get_index_sameLabId(LabIds,myLabId):
     outIndx = []
     for cindx in range(0,len(LabIds)):
@@ -339,7 +365,9 @@ def interactive_prompt():
     while answer.lower() != "quit":
         
         if answer.lower() == "help":
+
             lst_command = "info <labId> \n available anytime\n lists all the labs in Media lab \n valid inputs: an integer\n"
+            lst_command+="tableview \n available anytime\n lists all the labs in a table view \n valid inputs: string\n"
             lst_command+= "top brief \n available anytime \n we would give you the top 10 most used words in the lab groups'brief\n"
             lst_command+= "plot size \n available anytime \n we would provide you with the graphs of the size of each lab\n"
             lst_command+= "plot hashtag \n available anytime \n we would provide you with the graphs of the number of hashtags(research topics) each lab has\n"
@@ -349,6 +377,8 @@ def interactive_prompt():
 
             print(lst_command)
             answer = input("Choose a lab Id for more information (or 'help' for options or 'quit'): ")
+        elif answer.lower() == "tableview":
+            plot_table()
         elif answer.lower().startswith('plot'):
             if answer.lower().split()[1].lower() == 'size':
                 plot_lab_size()
