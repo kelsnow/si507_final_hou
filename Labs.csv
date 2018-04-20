@@ -1,0 +1,27 @@
+Id,Name,LabBrief,PrimaryInstructor,PeopleNumber,HashtagNumber
+1,affective-computing,"Advancing wellbeing using new ways to communicate, understand, and respond to emotion",Rosalind W. Picard,21,20
+2,biomechatronics,Enhancing human physical capability,Hugh Herr,62,7
+3,camera-culture,"Making the invisible visible–inside our bodies, around us, and beyond–for health, work, and connection",Ramesh Raskar,20,21
+4,city-science,Looking beyond smart cities,Kent Larson,33,26
+5,civic-media,Creating technology for social change,Ethan Zuckerman,28,37
+6,collective-learning,Transforming data into knowledge,Cesar A. Hidalgo,39,26
+7,conformable-decoders,Converting the patterns of nature and the human body into beneficial signals and energy,Canan Dagdeviren,9,7
+8,design-fiction,"Sparking discussion about the social, cultural, and ethical implications of emerging technologies through design and storytelling",NA,0,11
+9,fluid-interfaces,"Inventing the next-generation mobile device—highly personalized, wearable, and immersive—to support our unique needs and goals",Pattie Maes,70,29
+10,human-dynamics,"Exploring how social networks can influence our lives in business, health, governance, and technology adoption and diffusion",Alex 'Sandy' Pentland,70,46
+11,lifelong-kindergarten,Engaging people in creative learning experiences,Mitchel Resnick,61,9
+12,living-mobile,Enhancing mobile life through improved user interactions,Chris Schmandt,12,10
+13,mediated-matter,"Designing for, with, and by nature",Neri Oxman,43,13
+14,molecular-machines,Engineering at the limits of complexity with molecular-scale parts,Joseph M. Jacobson,14,4
+15,object-based-media,"Changing storytelling, communication, and everyday life through sensing, understanding, and new interface technologies",V. Michael Bove,42,15
+16,opera-of-the-future,"Extending expression, learning, and health through innovations in musical composition, performance, and participation",Tod Machover,39,20
+17,personal-robots,"Building socially engaging robots and interactive technologies to help people live healthier lives, connect with others, and learn better",Cynthia Breazeal,40,23
+18,responsive-environments,"Augmenting and mediating human experience, interaction, and perception with sensor networks",Joseph A. Paradiso,50,21
+19,scalable-cooperation,Reimagining human cooperation in the age of social media and artificial intelligence,Iyad Rahwan,32,21
+20,sculpting-evolution,Exploring evolutionary and ecological engineering,Kevin Esvelt,13,13
+21,signal-kinetics,"Extending human and computer abilities in sensing, communication, and actuation through signals and networks",Fadel Adib,6,12
+22,social-machines,Promoting deeper learning and understanding in human networks,Deb Roy,40,27
+23,space-enabled,Advancing justice in Earth's complex systems using designs enabled by space,Danielle Wood,10,7
+24,synthetic-neurobiology,Revealing insights into the human condition and repairing brain disorders via novel tools for mapping and fixing brain computations,Edward Boyden,72,12
+25,tangible-media,Seamlessly coupling the worlds of bits and atoms by giving dynamic physical form to digital information and computation,Hiroshi Ishii,64,17
+26,viral-communications,Creating scalable technologies that evolve with user inventiveness,Andrew Lippman,38,25

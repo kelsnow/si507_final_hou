@@ -1,4 +1,6 @@
 
+#--------The scraping file that used to get data from MIT the Media Lab --------------
+
 import sqlite3
 import requests
 from bs4 import BeautifulSoup
@@ -23,12 +25,66 @@ base_url = "https://www-prod.media.mit.edu"
 groups_url= base_url + "/research"
 # "https://www-prod.media.mit.edu/research/?filter=groups"
 
+
+def get_project_data(lab_name):
+	project_url = base_url+"/groups/" + lab_name+"/projects/"
+	if project_url in CACHE_DICTION:
+		print('Fetching cached project data from ' + lab_name + " lab")
+		r_dict = CACHE_DICTION[project_url]
+	else:
+		print("Getting project data from " + lab_name+ " lab")
+		project_text = requests.get(project_url).text
+		CACHE_DICTION[project_url] = project_text
+		dumped_json_cache = json.dumps(CACHE_DICTION)
+		fw = open(CACHE_FNAME,"w")
+		fw.write(dumped_json_cache)
+		fw.close()
+		r_dict=CACHE_DICTION[project_url]
+
+	project_soup =  BeautifulSoup(r_dict,'html.parser')
+	all_pro = project_soup.find_all('div', class_='container-item')
+
+	project_info = {}
+	# print(all_pro)
+	for i in all_pro:
+		# if lab_name!= "affective-computing":
+		for j in i.find('a',class_="module-content-guard").find(('h2')): # project name 
+			# print(j)
+			project_info[j] = {}
+			project_name = j
+		try:
+			project_info[j]['brief'] = i.find('div',class_="module-excerpt").find('p').text
+		except:
+			project_info[j]['brief'] = 'n/a'
+			continue 
+
+		# find detailed info for each project 	
+		# each_project_url = base_url+"/projects/" +project_name+"/overview"
+
+		# if each_project_url in CACHE_DICTION:
+		# 	print('Fetching cached project data from ' + project_name + " project")
+		# 	e_dict = CACHE_DICTION[each_project_url]
+		# else:
+		# 	print("Getting project data from " + project_name+ " project")
+		# 	each_text = requests.get(each_project_url).text
+		# 	CACHE_DICTION[each_project_url] = each_text
+		# 	dumped_json_cache = json.dumps(CACHE_DICTION)
+		# 	fw = open(CACHE_FNAME,"w")
+		# 	fw.write(dumped_json_cache)
+		# 	fw.close()
+		# 	e_dict=CACHE_DICTION[each_project_url]
+
+		# each_soup = BeautifulSoup(r_dict,'html.parser')
+
+	return project_info
+		
+print(get_project_data('affective-computing'))
+
 # return a dictonary of each lab and associated values 
 def get_medialab_data():
 	
 	# "https://www-prod.media.mit.edu/research/?filter=groups"
 	# param = {}
-
 	if groups_url in CACHE_DICTION:
 		print('Fetching cached data')
 		r_dict = CACHE_DICTION[groups_url]
@@ -119,6 +175,15 @@ def get_medialab_data():
 		group_dict[i['data-href'].split('/')[2]]['hashnum'] = len(hash_row.find_all('a'))
 		group_dict[i['data-href'].split('/')[2]]['hashtags'] = hash_lst
 
+
+		# if lab_name != 'affective-computing' and lab_name!= 'design-fiction':
+
+		project_info = get_project_data(lab_name)
+		group_dict[i['data-href'].split('/')[2]]['projects'] = project_info
+		# else:
+			# print("let's see see")
+			# group_dict[i['data-href'].split('/')[2]]['projects'] = "n/a"
+
 		#Gettign the most updated news and events 
 		# update_url = base_url+"/groups/"+lab_name+"/updates/"
 		# if update_url in CACHE_DICTION:
@@ -153,62 +218,14 @@ def get_medialab_data():
 	return group_dict
 
 # get_medialab_data()
-# labs = get_medialab_data()
+labs = get_medialab_data()
 # print(labs)
 # print(labs.keys())
 # print(labs['space-enabled']['brief'])
 
 	
 
-def get_project_data(lab_name):
-	project_url = base_url+"/groups/" + lab_name+"/projects/"
-	if project_url in CACHE_DICTION:
-		print('Fetching cached project data from ' + lab_name + " lab")
-		r_dict = CACHE_DICTION[project_url]
-	else:
-		print("Getting project data from " + lab_name+ " lab")
-		project_text = requests.get(project_url).text
-		CACHE_DICTION[project_url] = project_text
-		dumped_json_cache = json.dumps(CACHE_DICTION)
-		fw = open(CACHE_FNAME,"w")
-		fw.write(dumped_json_cache)
-		fw.close()
-		r_dict=CACHE_DICTION[project_url]
 
-	project_soup =  BeautifulSoup(r_dict,'html.parser')
-	all_pro = project_soup.find_all('div', class_='container-item')
-
-	project_info = {}
-	# print(all_pro)
-	for i in all_pro:
-		for j in i.find('a',class_="module-content-guard").find(('h2')): # project name 
-			# print(j)
-			project_info[j] = {}
-			project_name = j
-		# print(i.find('div',class_="module-excerpt").find('p').text)
-		project_info[j]['brief'] = i.find('div',class_="module-excerpt").find('p').text
-
-		# find detailed info for each project 	
-		# each_project_url = base_url+"/projects/" +project_name+"/overview"
-
-		# if each_project_url in CACHE_DICTION:
-		# 	print('Fetching cached project data from ' + project_name + " project")
-		# 	e_dict = CACHE_DICTION[each_project_url]
-		# else:
-		# 	print("Getting project data from " + project_name+ " project")
-		# 	each_text = requests.get(each_project_url).text
-		# 	CACHE_DICTION[each_project_url] = each_text
-		# 	dumped_json_cache = json.dumps(CACHE_DICTION)
-		# 	fw = open(CACHE_FNAME,"w")
-		# 	fw.write(dumped_json_cache)
-		# 	fw.close()
-		# 	e_dict=CACHE_DICTION[each_project_url]
-
-		# each_soup = BeautifulSoup(r_dict,'html.parser')
-
-	return project_info
-		
-# get_project_data('collective-learning')
 
 
 def get_hashtag():
@@ -241,16 +258,16 @@ def get_hashtag():
 
 
 all_hash = get_hashtag()
-print(len(all_hash))
+# print(len(all_hash))
 
 
 
 #-------------- Write out the json -------------------------
-# media json that for group table 
-# r_json_nice = json.dumps(labs,indent = 2)
-# f = open("media.json",'w')
-# f.write(r_json_nice)
-# f.close()
+#media json that for group table 
+r_json_nice = json.dumps(labs,indent = 2)
+f = open("media.json",'w')
+f.write(r_json_nice)
+f.close()
 
 # hashtag json for hashtag table 
 h_json_nice = json.dumps(all_hash,indent=2)
