@@ -201,12 +201,31 @@ def get_top_ten_Brief(lst):
     
 
 
-# five = get_top_five_Brief(lab_brief_lst)
+# five = get_top_ten_Brief(lab_brief_lst)
 # print(five)
 
-project_five = get_top_ten_Brief(project_brief_lst)
+# project_five = get_top_ten_Brief(project_brief_lst)
 # print(project_five)
 
+
+# ------------build up lab class--------------
+class lab():
+    def __init__(self,name='',brief='',PI='',peoplenum=0,hashtag=0,lab_dict = None):
+        if lab_dict is None:
+            self.name = name
+            self.brief = brief
+            self.PI = PI
+            self.size = peoplenum
+        else:
+            self.name = lab_dict['name']
+            self.brief = lab_dict['brief']
+            self.PI = lab_dict['director']
+            self.size = lab_dict['peoplenum']
+
+
+    def __str__(self):
+        s = "Lab name: "+ self.name + " lab brief: " + self.brief + " Principal Investigator: " +self.PI + " Lab size: " + str(self.size)
+        return s
 
 #-------------------Graphs-----------------------
 lab_name =[]
@@ -219,8 +238,7 @@ for i in media_data.keys():
     lab_hashnum.append(media_data[i]['hashnum'])
 
 def plot_lab_size():
-
-    trace1 = go.Bar(
+    trace1=go.Bar(   
     x=lab_name,
     y=lab_peoplenum,
     name='lab size',
@@ -247,14 +265,14 @@ def plot_lab_size():
     fig = go.Figure(data=data, layout=layout) 
     py.plot(fig, filename='styled histogram')
 
-# plot_lab_size(lab_name,lab_peoplenum)
+# plot_lab_size()
 
 
 def plot_lab_hashnum():
     trace1 = go.Bar(
     x=lab_name,
     y=lab_hashnum,
-    name='lab size',
+    name='lab hashtag',
     marker=dict(
         color='#0DA35E',
     ),
@@ -263,6 +281,7 @@ def plot_lab_hashnum():
 
 
     data = [trace1]
+
     layout = go.Layout(
     title='Lab hashtag distribution',
     xaxis=dict(
@@ -278,7 +297,7 @@ def plot_lab_hashnum():
     fig = go.Figure(data=data, layout=layout) 
     py.plot(fig, filename='styled histogram')
 
-# plot_lab_hashnum(lab_name,lab_hashnum)
+# plot_lab_hashnum()
 
 def plot_table():
     df = pd.read_csv('Labs.csv')
@@ -303,8 +322,6 @@ def plot_table():
         
 
 # plot_table()
-
-
 
 def get_index_sameLabId(LabIds,myLabId):
     outIndx = []
@@ -332,21 +349,24 @@ def plot_cloud(lab_id):
 
 
     # for c_labid in set(MYDF ["LabId"]):
-    cbreif_string = getString_forwdcloud_fromSameLabID(MYDF ,MYDF["LabId"],lab_id, INDX_BRIEF )
-    wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(cbreif_string)
-    cfile = "labid" + str(lab_id) + ".wordcloud.png"
-    # wordcloud.to_file(cfile)
-    @app.route('/')
-    def cloud():
-        im_src = "/static/"+cfile
-        tag = '<img src='+ im_src+ ' />'
-        return tag
-    if __name__ == '__main__':
-        app.run(debug = True)
+    if lab_id == 23:
+        print("sorry, lab space enabled doesn't have information to generate word cloud, please try other ids")
+    else:
+        cbreif_string = getString_forwdcloud_fromSameLabID(MYDF ,MYDF["LabId"],lab_id, INDX_BRIEF )
+        wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(cbreif_string)
+        cfile = "labid" + str(lab_id) + ".wordcloud.png"
+            # wordcloud.to_file(cfile)
+        @app.route('/')
+        def cloud():
+            im_src = "/static/"+cfile
+            tag = '<img src='+ im_src+ ' />'
+            return tag
+        if __name__ == '__main__':
+            app.run(debug = True)
 
     # return cfile
 
-# plot_cloud(1)
+# plot_cloud(23)
 
 
 # -----------------------interactivity---------------
@@ -354,7 +374,7 @@ def interactive_prompt():
     conn = sqlite3.connect(DBNAME)
     cur = conn.cursor()
 
-    print("Hey there, we finally meet.Here is a list of all the lab groups in MIT the Media lab")
+    print("Hey there, we finally meet！ Here is a list of all the lab groups in MIT the Media lab")
     c = 1
     for i in media_data.keys():
         print(c, i)
@@ -362,13 +382,11 @@ def interactive_prompt():
 
     answer=input("Choose a lab Id for more information (or 'help' for options or 'quit'): ")
 
-    while answer.lower() != "quit":
-        
+    while answer.lower() != "quit":    
         if answer.lower() == "help":
-
             lst_command = "info <labId> \n available anytime\n lists all the labs in Media lab \n valid inputs: an integer\n"
             lst_command+="tableview \n available anytime\n lists all the labs in a table view \n valid inputs: string\n"
-            lst_command+= "top brief \n available anytime \n we would give you the top 10 most used words in the lab groups'brief\n"
+            lst_command+= "top  \n available anytime \n we would give you the top 10 most used words in the lab groups'brief\n"
             lst_command+= "plot size \n available anytime \n we would provide you with the graphs of the size of each lab\n"
             lst_command+= "plot hashtag \n available anytime \n we would provide you with the graphs of the number of hashtags(research topics) each lab has\n"
             lst_command+= "plot cloud <labId> \n available anytime \n We would generate a wordcloud for the specific lab for you\n"
@@ -376,17 +394,23 @@ def interactive_prompt():
             lst_command+="help \n   lists availabe commands"
 
             print(lst_command)
-            answer = input("Choose a lab Id for more information (or 'help' for options or 'quit'): ")
+            answer = input("Enter some commands (or 'help' for options or 'quit'): ")
         elif answer.lower() == "tableview":
             plot_table()
-        elif answer.lower().startswith('plot'):
+            answer = input("Enter some commands (or 'help' for options or 'quit'): ")
+        elif answer.lower().startswith('plot') and len(answer.lower().split()) > 1:
             if answer.lower().split()[1].lower() == 'size':
+                
                 plot_lab_size()
+                answer = input("Enter some commands (or 'help' for options or 'quit'): ")
             elif answer.lower().split()[1].lower() == 'hashtag':
+                
                 plot_lab_hashnum()
+                answer = input("Enter some commands (or 'help' for options or 'quit'): ")
             elif answer.lower().split()[1].lower() == 'cloud':
                 try: 
                     plot_cloud(answer.lower().split()[2])
+                    answer = input("Enter some commands (or 'help' for options or 'quit'): ") 
                 except:
                     print("command not recognized")
                     answer = input("Choose a lab Id for more information (or 'help' for options or 'quit'): ")
@@ -394,18 +418,22 @@ def interactive_prompt():
                 print("command not recognized")
                 answer = input("Enter some commands (or 'help' for options or 'quit'): ")
         elif answer.lower().startswith('top'):
-            get_top_ten_Brief(lab_brief_lst)
+            ten=get_top_ten_Brief(lab_brief_lst)
+            for i in ten:
+                print(i[0])
+            answer = input("Enter some commands (or 'help' for options or 'quit'):")
         elif answer.lower().startswith('info'):
             try: 
-                print(answer.lower().split()[1])
+                # print(answer.lower().split()[1])
                 statement = '''
-                    SELECT Name, LabBrief,PrimaryInstructor
+                    SELECT Name
                     FROM Labs WHERE Id = ?
                 '''
                 params = (answer.lower().split()[1],)
                 cur.execute(statement,params)
+        
                 for row in cur:
-                    print("Lab Name: " +row[0] + "Lab Brief: " + row[1] + "Primary Instructor: " + row[2])
+                    print(lab(lab_dict=media_data[row[0]]))
                 answer = input("Enter some commands (or 'help' for options or 'quit'):")
             except:
                 print("command not recognized")

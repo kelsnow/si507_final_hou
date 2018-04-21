@@ -57,6 +57,28 @@ class TestDatabase(unittest.TestCase):
 			self.assertEqual(i[0], 'robotics')
 
 
+class TestGraph(unittest.TestCase):
+
+	def test_plot_size(self):
+		boo=False
+		try:
+			plot_lab_size()
+			boo = True
+		except:
+			boo=False
+		self.assertEqual(boo,True)
+
+
+class TestLabClass(unittest.TestCase):
+
+	def test_lab_instance(self):
+		l= lab(lab_dict=media_data['human-dynamics'])
+		self.assertEqual(l.name,'human-dynamics')
+		self.assertEqual(l.PI,"Alex 'Sandy' Pentland")
+		self.assertGreater(l.size,2)
+
+
+
 
 
 unittest.main()

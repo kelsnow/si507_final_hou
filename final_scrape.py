@@ -58,24 +58,6 @@ def get_project_data(lab_name):
 			project_info[j]['brief'] = 'n/a'
 			continue 
 
-		# find detailed info for each project 	
-		# each_project_url = base_url+"/projects/" +project_name+"/overview"
-
-		# if each_project_url in CACHE_DICTION:
-		# 	print('Fetching cached project data from ' + project_name + " project")
-		# 	e_dict = CACHE_DICTION[each_project_url]
-		# else:
-		# 	print("Getting project data from " + project_name+ " project")
-		# 	each_text = requests.get(each_project_url).text
-		# 	CACHE_DICTION[each_project_url] = each_text
-		# 	dumped_json_cache = json.dumps(CACHE_DICTION)
-		# 	fw = open(CACHE_FNAME,"w")
-		# 	fw.write(dumped_json_cache)
-		# 	fw.close()
-		# 	e_dict=CACHE_DICTION[each_project_url]
-
-		# each_soup = BeautifulSoup(r_dict,'html.parser')
-
 	return project_info
 		
 print(get_project_data('affective-computing'))
@@ -118,6 +100,7 @@ def get_medialab_data():
 		for j in i.find_all('footer',class_="module-meta"):
 			if j.find('a')['href'].startswith('/people'):		
 				# print(j.find('a').text)
+				group_dict[i['data-href'].split('/')[2]]['name']= i['data-href'].split('/')[2]
 				group_dict[i['data-href'].split('/')[2]]['director'] = j.find('a').text
 				# directors.append(j.find('a').text)
 			else:
@@ -175,45 +158,12 @@ def get_medialab_data():
 		group_dict[i['data-href'].split('/')[2]]['hashnum'] = len(hash_row.find_all('a'))
 		group_dict[i['data-href'].split('/')[2]]['hashtags'] = hash_lst
 
-
-		# if lab_name != 'affective-computing' and lab_name!= 'design-fiction':
-
 		project_info = get_project_data(lab_name)
 		group_dict[i['data-href'].split('/')[2]]['projects'] = project_info
 		# else:
 			# print("let's see see")
 			# group_dict[i['data-href'].split('/')[2]]['projects'] = "n/a"
 
-		#Gettign the most updated news and events 
-		# update_url = base_url+"/groups/"+lab_name+"/updates/"
-		# if update_url in CACHE_DICTION:
-		# 	print('Fetching cached updates data from ' + lab_name + " lab")
-		# 	u_dict = CACHE_DICTION[update_url]
-		# else:
-		# 	print("Getting updates data from " + lab_name+ " lab")
-		# 	up_text = requests.get(update_url).text
-		# 	CACHE_DICTION[update_url] = up_text
-		# 	dumped_json_cache = json.dumps(CACHE_DICTION)
-		# 	fw = open(CACHE_FNAME,"w")
-		# 	fw.write(dumped_json_cache)
-		# 	fw.close()
-		# 	u_dict=CACHE_DICTION[update_url]
-
-		# update_soup = BeautifulSoup(u_dict,'html.parser')
-		# if lab_name == 'design-fiction':
-		# 	print('too ficted')
-		# else:
-		# 	update_row = update_soup.find('div',class_="item-container")
-		# 	newest = update_row.find('div',class_='module')
-		# 	for n in newest.find('footer',class_='module-meta'):
-		# 		for d in n:
-		# 			if d != type(''):
-		# 				print(d)
-		# 				print(type(d))	
-				# print(n)
-			
-			# print(newest)
-		# hash_lst = []
 
 	return group_dict
 

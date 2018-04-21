@@ -1,5 +1,6 @@
 {
   "affective-computing": {
+    "name": "affective-computing",
     "director": "Rosalind W. Picard",
     "brief": "Advancing wellbeing using new ways to communicate, understand, and respond to emotion",
     "peoplenum": 21,
@@ -177,6 +178,7 @@
     }
   },
   "biomechatronics": {
+    "name": "biomechatronics",
     "director": "Hugh Herr",
     "brief": "Enhancing human physical capability",
     "peoplenum": 62,
@@ -254,6 +256,7 @@
     }
   },
   "camera-culture": {
+    "name": "camera-culture",
     "director": "Ramesh Raskar",
     "brief": "Making the invisible visible\u2013inside our bodies, around us, and beyond\u2013for health, work, and connection",
     "peoplenum": 20,
@@ -393,6 +396,7 @@
     }
   },
   "city-science": {
+    "name": "city-science",
     "director": "Kent Larson",
     "brief": "Looking beyond smart cities",
     "peoplenum": 33,
@@ -504,6 +508,7 @@
     }
   },
   "civic-media": {
+    "name": "civic-media",
     "director": "Ethan Zuckerman",
     "brief": "Creating technology for social change",
     "peoplenum": 28,
@@ -629,6 +634,7 @@
     }
   },
   "collective-learning": {
+    "name": "collective-learning",
     "director": "Cesar A. Hidalgo",
     "brief": "Transforming data into knowledge",
     "peoplenum": 39,
@@ -728,6 +734,7 @@
     }
   },
   "conformable-decoders": {
+    "name": "conformable-decoders",
     "director": "Canan Dagdeviren",
     "brief": "Converting the patterns of nature and the human body into beneficial signals and energy",
     "peoplenum": 9,
@@ -787,6 +794,7 @@
     }
   },
   "fluid-interfaces": {
+    "name": "fluid-interfaces",
     "director": "Pattie Maes",
     "brief": "Inventing the next-generation mobile device\u2014highly personalized, wearable, and immersive\u2014to support our unique needs and goals",
     "peoplenum": 70,
@@ -937,6 +945,7 @@
     }
   },
   "human-dynamics": {
+    "name": "human-dynamics",
     "director": "Alex 'Sandy' Pentland",
     "brief": "Exploring how social networks can influence our lives in business, health, governance, and technology adoption and diffusion",
     "peoplenum": 70,
@@ -1077,6 +1086,7 @@
     }
   },
   "lifelong-kindergarten": {
+    "name": "lifelong-kindergarten",
     "director": "Mitchel Resnick",
     "brief": "Engaging people in creative learning experiences",
     "peoplenum": 61,
@@ -1150,6 +1160,7 @@
     }
   },
   "living-mobile": {
+    "name": "living-mobile",
     "director": "Chris Schmandt",
     "brief": "Enhancing mobile life through improved user interactions",
     "peoplenum": 12,
@@ -1224,6 +1235,7 @@
     }
   },
   "mediated-matter": {
+    "name": "mediated-matter",
     "director": "Neri Oxman",
     "brief": "Designing for, with, and by nature",
     "peoplenum": 43,
@@ -1349,6 +1361,7 @@
     }
   },
   "molecular-machines": {
+    "name": "molecular-machines",
     "director": "Joseph M. Jacobson",
     "brief": "Engineering at the limits of complexity with molecular-scale parts",
     "peoplenum": 14,
@@ -1375,6 +1388,7 @@
     }
   },
   "object-based-media": {
+    "name": "object-based-media",
     "director": "V. Michael Bove",
     "brief": "Changing storytelling, communication, and everyday life through sensing, understanding, and new interface technologies",
     "peoplenum": 42,
@@ -1496,6 +1510,7 @@
     }
   },
   "opera-of-the-future": {
+    "name": "opera-of-the-future",
     "director": "Tod Machover",
     "brief": "Extending expression, learning, and health through innovations in musical composition, performance, and participation",
     "peoplenum": 39,
@@ -1589,6 +1604,7 @@
     }
   },
   "personal-robots": {
+    "name": "personal-robots",
     "director": "Cynthia Breazeal",
     "brief": "Building socially engaging robots and interactive technologies to help people live healthier lives, connect with others, and learn better",
     "peoplenum": 40,
@@ -1688,6 +1704,7 @@
     }
   },
   "responsive-environments": {
+    "name": "responsive-environments",
     "director": "Joseph A. Paradiso",
     "brief": "Augmenting and mediating human experience, interaction, and perception with sensor networks",
     "peoplenum": 50,
@@ -1818,6 +1835,7 @@
     }
   },
   "scalable-cooperation": {
+    "name": "scalable-cooperation",
     "director": "Iyad Rahwan",
     "brief": "Reimagining human cooperation in the age of social media and artificial intelligence",
     "peoplenum": 32,
@@ -1918,6 +1936,7 @@
     }
   },
   "sculpting-evolution": {
+    "name": "sculpting-evolution",
     "director": "Kevin Esvelt",
     "brief": "Exploring evolutionary and ecological engineering",
     "peoplenum": 13,
@@ -1971,6 +1990,7 @@
     }
   },
   "signal-kinetics": {
+    "name": "signal-kinetics",
     "director": "Fadel Adib",
     "brief": "Extending human and computer abilities in sensing, communication, and actuation through signals and networks",
     "peoplenum": 6,
@@ -2011,6 +2031,7 @@
     }
   },
   "social-machines": {
+    "name": "social-machines",
     "director": "Deb Roy",
     "brief": "Promoting deeper learning and understanding in human networks",
     "peoplenum": 40,
@@ -2075,6 +2096,7 @@
     }
   },
   "space-enabled": {
+    "name": "space-enabled",
     "director": "Danielle Wood",
     "brief": "Advancing justice in Earth's complex systems using designs enabled by space",
     "peoplenum": 10,
@@ -2091,6 +2113,7 @@
     "projects": {}
   },
   "synthetic-neurobiology": {
+    "name": "synthetic-neurobiology",
     "director": "Edward Boyden",
     "brief": "Revealing insights into the human condition and repairing brain disorders via novel tools for mapping and fixing brain computations",
     "peoplenum": 72,
@@ -2131,6 +2154,7 @@
     }
   },
   "tangible-media": {
+    "name": "tangible-media",
     "director": "Hiroshi Ishii",
     "brief": "Seamlessly coupling the worlds of bits and atoms by giving dynamic physical form to digital information and computation",
     "peoplenum": 64,
@@ -2221,6 +2245,7 @@
     }
   },
   "viral-communications": {
+    "name": "viral-communications",
     "director": "Andrew Lippman",
     "brief": "Creating scalable technologies that evolve with user inventiveness",
     "peoplenum": 38,
